@@ -1,0 +1,283 @@
+{
+    "Params: --aligner bowtie2_salmon --gffread_transcript_fasta": {
+        "content": [
+            13,
+            {
+                "BOWTIE2_BUILD": {
+                    "bowtie2": "2.5.4"
+                },
+                "FASTQC": {
+                    "fastqc": "0.12.1"
+                },
+                "FQ_LINT": {
+                    "fq": "0.12.0 (2024-07-08)"
+                },
+                "GFFREAD": {
+                    "gffread": "0.12.7"
+                },
+                "GFFREAD_TRANSCRIPTS": {
+                    "gffread": "0.12.7"
+                },
+                "GTF2BED": {
+                    "perl": "5.26.2"
+                },
+                "GTF_FILTER": {
+                    "python": "3.9.5"
+                },
+                "SAMTOOLS_FAIDX": {
+                    "samtools": "1.22.1"
+                },
+                "TRIMGALORE": {
+                    "trimgalore": "0.6.10"
+                }
+            },
+            [
+                "fastqc",
+                "fastqc/raw",
+                "fastqc/raw/SALM_REP1_raw_1_fastqc.html",
+                "fastqc/raw/SALM_REP1_raw_1_fastqc.zip",
+                "fastqc/raw/SALM_REP1_raw_2_fastqc.html",
+                "fastqc/raw/SALM_REP1_raw_2_fastqc.zip",
+                "fastqc/raw/SALM_REP2_raw_1_fastqc.html",
+                "fastqc/raw/SALM_REP2_raw_1_fastqc.zip",
+                "fastqc/raw/SALM_REP2_raw_2_fastqc.html",
+                "fastqc/raw/SALM_REP2_raw_2_fastqc.zip",
+                "fastqc/trim",
+                "fastqc/trim/SALM_REP1_trimmed_1_val_1_fastqc.html",
+                "fastqc/trim/SALM_REP1_trimmed_1_val_1_fastqc.zip",
+                "fastqc/trim/SALM_REP1_trimmed_2_val_2_fastqc.html",
+                "fastqc/trim/SALM_REP1_trimmed_2_val_2_fastqc.zip",
+                "fastqc/trim/SALM_REP2_trimmed_1_val_1_fastqc.html",
+                "fastqc/trim/SALM_REP2_trimmed_1_val_1_fastqc.zip",
+                "fastqc/trim/SALM_REP2_trimmed_2_val_2_fastqc.html",
+                "fastqc/trim/SALM_REP2_trimmed_2_val_2_fastqc.zip",
+                "fq_lint",
+                "fq_lint/raw",
+                "fq_lint/raw/SALM_REP1.fq_lint.txt",
+                "fq_lint/raw/SALM_REP2.fq_lint.txt",
+                "multiqc",
+                "multiqc/bowtie2_salmon",
+                "multiqc/bowtie2_salmon/multiqc_report.html",
+                "multiqc/bowtie2_salmon/multiqc_report_data",
+                "multiqc/bowtie2_salmon/multiqc_report_data/cutadapt_filtered_reads_plot.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/cutadapt_trimmed_sequences_plot_3_Counts.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/cutadapt_trimmed_sequences_plot_3_Obs_Exp.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_raw-status-check-heatmap.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_raw_overrepresented_sequences_plot.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_raw_per_base_n_content_plot.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_raw_per_base_sequence_quality_plot.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_raw_per_sequence_gc_content_plot_Counts.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_raw_per_sequence_gc_content_plot_Percentages.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_raw_per_sequence_quality_scores_plot.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_raw_sequence_counts_plot.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_raw_sequence_duplication_levels_plot.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_raw_top_overrepresented_sequences_table.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_sequence_length_distribution_plot.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_trimmed-status-check-heatmap.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_trimmed_overrepresented_sequences_plot.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_trimmed_per_base_n_content_plot.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_trimmed_per_base_sequence_quality_plot.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_trimmed_per_sequence_gc_content_plot_Counts.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_trimmed_per_sequence_gc_content_plot_Percentages.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_trimmed_per_sequence_quality_scores_plot.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_trimmed_sequence_counts_plot.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_trimmed_sequence_duplication_levels_plot.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/fastqc_trimmed_top_overrepresented_sequences_table.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/llms-full.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/multiqc.log",
+                "multiqc/bowtie2_salmon/multiqc_report_data/multiqc.parquet",
+                "multiqc/bowtie2_salmon/multiqc_report_data/multiqc_citations.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/multiqc_cutadapt.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/multiqc_data.json",
+                "multiqc/bowtie2_salmon/multiqc_report_data/multiqc_fail_samples.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/multiqc_fastqc_fastqc_raw.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/multiqc_fastqc_fastqc_trimmed.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/multiqc_general_stats.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/multiqc_software_versions.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_data/multiqc_sources.txt",
+                "multiqc/bowtie2_salmon/multiqc_report_plots",
+                "multiqc/bowtie2_salmon/multiqc_report_plots/pdf",
+                "multiqc/bowtie2_salmon/multiqc_report_plots/png",
+                "multiqc/bowtie2_salmon/multiqc_report_plots/svg",
+                [
+                    "execution_report_2026-01-23_15-05-16.html:md5,22742e09cd8680ae20212c5ff9061e12",
+                    "execution_report_2026-01-23_16-48-17.html:md5,172215d115e25bc7295be1fada9aa3e7",
+                    "execution_report_2026-01-23_17-05-55.html:md5,3c736e20d0c64f0034ea42925c085fd8",
+                    "execution_report_2026-01-23_17-08-19.html:md5,f17e4e6329e4931b51056a71a4a54fbd",
+                    "execution_report_2026-01-23_22-44-08.html:md5,072ad6b51525c02da8c758344a72cff1",
+                    "execution_report_2026-01-26_09-32-09.html:md5,b5465c341d1d73a86147f91f2b4f0855",
+                    "execution_report_2026-01-26_09-32-39.html:md5,e4eba90737809d6d445c5ea0546c02fd",
+                    "execution_timeline_2026-01-23_15-05-16.html:md5,ab5188b220a5ff11f3d74c3c3302153d",
+                    "execution_timeline_2026-01-23_16-48-17.html:md5,fc54e49d3fc42d375e95429fd96eecbd",
+                    "execution_timeline_2026-01-23_17-05-55.html:md5,7f1a3f8ceb61dfc1295035ce3d4a5b1b",
+                    "execution_timeline_2026-01-23_17-08-19.html:md5,efbe0fd3ae87c6c46d24b7c9a059a3f4",
+                    "execution_timeline_2026-01-23_22-44-08.html:md5,7d10a700eae47f152037039bb2670d99",
+                    "execution_timeline_2026-01-26_09-32-09.html:md5,08464c0a90023272415fb77257197521",
+                    "execution_timeline_2026-01-26_09-32-39.html:md5,bbb897a178cf7c8cf7a66c9e5d497fc6",
+                    "execution_trace_2026-01-23_15-05-16.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_16-48-17.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_17-05-55.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_17-08-19.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_18-14-12.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_18-15-12.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_18-16-14.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_22-44-08.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_22-44-52.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_23-19-29.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_23-22-03.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-26_09-32-09.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-26_09-32-39.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "pipeline_dag_2026-01-23_15-05-16.html:md5,2d3fd3acaa68ec0f9799c44ebb9ea2f9",
+                    "pipeline_dag_2026-01-23_16-48-17.html:md5,2d3fd3acaa68ec0f9799c44ebb9ea2f9",
+                    "pipeline_dag_2026-01-23_17-05-55.html:md5,2d3fd3acaa68ec0f9799c44ebb9ea2f9",
+                    "pipeline_dag_2026-01-23_17-08-19.html:md5,2d3fd3acaa68ec0f9799c44ebb9ea2f9",
+                    "pipeline_dag_2026-01-23_22-44-08.html:md5,17160637c1f349e7b088f502fdbf36c3",
+                    "pipeline_dag_2026-01-26_09-32-09.html:md5,2d3fd3acaa68ec0f9799c44ebb9ea2f9",
+                    "pipeline_dag_2026-01-26_09-32-39.html:md5,e0cd5d1dc47d6dcb5633c68f31e0dee9"
+                ],
+                "pipeline_info/nf_core_rnaseq_software_mqc_versions.yml",
+                "trimgalore",
+                "trimgalore/SALM_REP1_trimmed_1.fastq.gz_trimming_report.txt",
+                "trimgalore/SALM_REP1_trimmed_2.fastq.gz_trimming_report.txt",
+                "trimgalore/SALM_REP2_trimmed_1.fastq.gz_trimming_report.txt",
+                "trimgalore/SALM_REP2_trimmed_2.fastq.gz_trimming_report.txt"
+            ],
+            [
+                "cutadapt_filtered_reads_plot.txt:md5,b82a9c2120e7c0bb06e3841ab52193c5",
+                "cutadapt_trimmed_sequences_plot_3_Counts.txt:md5,3ffd158758886bc8670a0e691aedadda",
+                "cutadapt_trimmed_sequences_plot_3_Obs_Exp.txt:md5,570d5968b148e3759e31bfe80a6efcfb",
+                "fastqc_raw-status-check-heatmap.txt:md5,e7e2b9dc8c77f456ad5f770fe2b8e308",
+                "fastqc_raw_overrepresented_sequences_plot.txt:md5,4b1cdda2f52c1064258e9b77341d5d86",
+                "fastqc_raw_per_base_n_content_plot.txt:md5,76f9627438fa3a1c983405fa057d1b3a",
+                "fastqc_raw_per_base_sequence_quality_plot.txt:md5,b0ee91ba241f544696d9e096a1f81ae4",
+                "fastqc_raw_per_sequence_gc_content_plot_Counts.txt:md5,9f27db3f66c750152270ac6f65fe65d8",
+                "fastqc_raw_per_sequence_gc_content_plot_Percentages.txt:md5,b2c8cfeae0083d9779c1de1256d9938f",
+                "fastqc_raw_per_sequence_quality_scores_plot.txt:md5,b55988c5fa92b3ca87acd99d7a79a0e0",
+                "fastqc_raw_sequence_counts_plot.txt:md5,fe8a0c5d299e6e9972c8605e9fc8a022",
+                "fastqc_raw_sequence_duplication_levels_plot.txt:md5,5413485383af9f009c86ad014cb1b026",
+                "fastqc_sequence_length_distribution_plot.txt:md5,af188eea5f491d7384f1d95191fc1c82",
+                "fastqc_trimmed-status-check-heatmap.txt:md5,1d0aa37a36a7983cafafc566b6e88ac8",
+                "fastqc_trimmed_overrepresented_sequences_plot.txt:md5,4b1cdda2f52c1064258e9b77341d5d86",
+                "fastqc_trimmed_per_base_n_content_plot.txt:md5,4544afb10dbb7fd0c31b9ed0825310b8",
+                "fastqc_trimmed_per_base_sequence_quality_plot.txt:md5,737ddde9e89904f6b2948fcb385b8d87",
+                "fastqc_trimmed_per_sequence_gc_content_plot_Counts.txt:md5,61504ae61ecd699415536d2c519afb6f",
+                "fastqc_trimmed_per_sequence_gc_content_plot_Percentages.txt:md5,671e455fc21da8741b4c0462320aaed6",
+                "fastqc_trimmed_per_sequence_quality_scores_plot.txt:md5,610d3a1f008bf73125acaacb72bb7dcf",
+                "fastqc_trimmed_sequence_counts_plot.txt:md5,fe8a0c5d299e6e9972c8605e9fc8a022",
+                "fastqc_trimmed_sequence_duplication_levels_plot.txt:md5,5413485383af9f009c86ad014cb1b026",
+                "multiqc_citations.txt:md5,78cc0f4521878c6c4beaf54ad968e411",
+                "multiqc_fail_samples.txt:md5,f1b21cf8d39d1c07b1ef2b0b827a18ff",
+                "multiqc_fastqc_fastqc_raw.txt:md5,42c1cc19c4b9104eb499ce499f335951",
+                "multiqc_fastqc_fastqc_trimmed.txt:md5,8be94d69e0c458017cf5064fa1fa86a0"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-03T15:37:33.150444"
+    },
+    "Params: --aligner bowtie2_salmon --gffread_transcript_fasta - stub": {
+        "content": [
+            13,
+            {
+                "BOWTIE2_BUILD": {
+                    "bowtie2": "2.5.4"
+                },
+                "FASTQC": {
+                    "fastqc": "0.12.1"
+                },
+                "FQ_LINT": {
+                    "fq": "0.12.0 (2024-07-08)"
+                },
+                "GFFREAD": {
+                    "gffread": "0.12.7"
+                },
+                "GFFREAD_TRANSCRIPTS": {
+                    "gffread": "0.12.7"
+                },
+                "GTF2BED": {
+                    "perl": "5.26.2"
+                },
+                "GTF_FILTER": {
+                    "python": "3.9.5"
+                },
+                "SAMTOOLS_FAIDX": {
+                    "samtools": "1.22.1"
+                },
+                "TRIMGALORE": {
+                    "trimgalore": "0.6.10"
+                }
+            },
+            [
+                "fastqc",
+                "fastqc/raw",
+                "fastqc/raw/SALM_REP1_raw.html",
+                "fastqc/raw/SALM_REP1_raw.zip",
+                "fastqc/raw/SALM_REP2_raw.html",
+                "fastqc/raw/SALM_REP2_raw.zip",
+                "fastqc/trim",
+                "fq_lint",
+                "fq_lint/raw",
+                "fq_lint/raw/SALM_REP1.fq_lint.txt",
+                "fq_lint/raw/SALM_REP2.fq_lint.txt",
+                "multiqc",
+                "multiqc/bowtie2_salmon",
+                "multiqc/bowtie2_salmon/multiqc_data",
+                "multiqc/bowtie2_salmon/multiqc_data/.stub",
+                "multiqc/bowtie2_salmon/multiqc_plots",
+                "multiqc/bowtie2_salmon/multiqc_report.html",
+                [
+                    "execution_report_2026-01-23_15-05-16.html:md5,22742e09cd8680ae20212c5ff9061e12",
+                    "execution_report_2026-01-23_16-48-17.html:md5,172215d115e25bc7295be1fada9aa3e7",
+                    "execution_report_2026-01-23_17-05-55.html:md5,3c736e20d0c64f0034ea42925c085fd8",
+                    "execution_report_2026-01-23_17-08-19.html:md5,f17e4e6329e4931b51056a71a4a54fbd",
+                    "execution_report_2026-01-23_22-44-08.html:md5,072ad6b51525c02da8c758344a72cff1",
+                    "execution_report_2026-01-26_09-32-09.html:md5,b5465c341d1d73a86147f91f2b4f0855",
+                    "execution_report_2026-01-26_09-32-39.html:md5,e4eba90737809d6d445c5ea0546c02fd",
+                    "execution_timeline_2026-01-23_15-05-16.html:md5,ab5188b220a5ff11f3d74c3c3302153d",
+                    "execution_timeline_2026-01-23_16-48-17.html:md5,fc54e49d3fc42d375e95429fd96eecbd",
+                    "execution_timeline_2026-01-23_17-05-55.html:md5,7f1a3f8ceb61dfc1295035ce3d4a5b1b",
+                    "execution_timeline_2026-01-23_17-08-19.html:md5,efbe0fd3ae87c6c46d24b7c9a059a3f4",
+                    "execution_timeline_2026-01-23_22-44-08.html:md5,7d10a700eae47f152037039bb2670d99",
+                    "execution_timeline_2026-01-26_09-32-09.html:md5,08464c0a90023272415fb77257197521",
+                    "execution_timeline_2026-01-26_09-32-39.html:md5,bbb897a178cf7c8cf7a66c9e5d497fc6",
+                    "execution_trace_2026-01-23_15-05-16.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_16-48-17.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_17-05-55.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_17-08-19.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_18-14-12.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_18-15-12.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_18-16-14.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_22-44-08.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_22-44-52.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_23-19-29.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-23_23-22-03.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-26_09-32-09.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "execution_trace_2026-01-26_09-32-39.txt:md5,8ad4a81ac400f067841cbfb3f18e6889",
+                    "pipeline_dag_2026-01-23_15-05-16.html:md5,2d3fd3acaa68ec0f9799c44ebb9ea2f9",
+                    "pipeline_dag_2026-01-23_16-48-17.html:md5,2d3fd3acaa68ec0f9799c44ebb9ea2f9",
+                    "pipeline_dag_2026-01-23_17-05-55.html:md5,2d3fd3acaa68ec0f9799c44ebb9ea2f9",
+                    "pipeline_dag_2026-01-23_17-08-19.html:md5,2d3fd3acaa68ec0f9799c44ebb9ea2f9",
+                    "pipeline_dag_2026-01-23_22-44-08.html:md5,17160637c1f349e7b088f502fdbf36c3",
+                    "pipeline_dag_2026-01-26_09-32-09.html:md5,2d3fd3acaa68ec0f9799c44ebb9ea2f9",
+                    "pipeline_dag_2026-01-26_09-32-39.html:md5,e0cd5d1dc47d6dcb5633c68f31e0dee9"
+                ],
+                "pipeline_info/nf_core_rnaseq_software_mqc_versions.yml",
+                "trimgalore",
+                "trimgalore/SALM_REP1_trimmed_1.fastq.gz_trimming_report.txt",
+                "trimgalore/SALM_REP1_trimmed_2.fastq.gz_trimming_report.txt",
+                "trimgalore/SALM_REP2_trimmed_1.fastq.gz_trimming_report.txt",
+                "trimgalore/SALM_REP2_trimmed_2.fastq.gz_trimming_report.txt"
+            ],
+            [
+                
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-02-03T15:38:32.575295"
+    }
+}

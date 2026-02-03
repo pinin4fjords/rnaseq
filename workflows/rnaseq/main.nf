@@ -16,6 +16,7 @@ include { MULTIQC_CUSTOM_BIOTYPE             } from '../../modules/local/multiqc
 // SUBWORKFLOW: Consisting of a mix of local and nf-core/modules
 //
 include { ALIGN_STAR                            } from '../../subworkflows/local/align_star'
+include { ALIGN_BOWTIE2                         } from '../../subworkflows/local/align_bowtie2'
 include { QUANTIFY_RSEM                         } from '../../subworkflows/local/quantify_rsem'
 include { BAM_DEDUP_UMI as BAM_DEDUP_UMI_STAR   } from '../../subworkflows/nf-core/bam_dedup_umi'
 include { BAM_DEDUP_UMI as BAM_DEDUP_UMI_HISAT2 } from '../../subworkflows/nf-core/bam_dedup_umi'
@@ -76,24 +77,25 @@ include { FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS              } from '../../subwor
 workflow RNASEQ {
 
     take:
-    ch_samplesheet       // channel: path(sample_sheet.csv)
-    ch_versions          // channel: [ path(versions.yml) ]
-    ch_fasta             // channel: path(genome.fasta)
-    ch_gtf               // channel: path(genome.gtf)
-    ch_fai               // channel: path(genome.fai)
-    ch_chrom_sizes       // channel: path(genome.sizes)
-    ch_gene_bed          // channel: path(gene.bed)
-    ch_transcript_fasta  // channel: path(transcript.fasta)
-    ch_star_index        // channel: path(star/index/)
-    ch_rsem_index        // channel: path(rsem/index/)
-    ch_hisat2_index      // channel: path(hisat2/index/)
-    ch_salmon_index      // channel: path(salmon/index/)
-    ch_kallisto_index    // channel: [ meta, path(kallisto/index/) ]
-    ch_bbsplit_index     // channel: path(bbsplit/index/)
-    ch_ribo_db           // channel: path(sortmerna_fasta_list)
-    ch_sortmerna_index   // channel: path(sortmerna/index/)
-    ch_bowtie2_index     // channel: path(bowtie2/index/) for rRNA removal
-    ch_splicesites       // channel: path(genome.splicesites.txt)
+    ch_samplesheet          // channel: path(sample_sheet.csv)
+    ch_versions             // channel: [ path(versions.yml) ]
+    ch_fasta                // channel: path(genome.fasta)
+    ch_gtf                  // channel: path(genome.gtf)
+    ch_fai                  // channel: path(genome.fai)
+    ch_chrom_sizes          // channel: path(genome.sizes)
+    ch_gene_bed             // channel: path(gene.bed)
+    ch_transcript_fasta     // channel: path(transcript.fasta)
+    ch_star_index           // channel: path(star/index/)
+    ch_rsem_index           // channel: path(rsem/index/)
+    ch_hisat2_index         // channel: path(hisat2/index/)
+    ch_bowtie2_index        // channel: path(bowtie2/index/) for alignment
+    ch_salmon_index         // channel: path(salmon/index/)
+    ch_kallisto_index       // channel: [ meta, path(kallisto/index/) ]
+    ch_bbsplit_index        // channel: path(bbsplit/index/)
+    ch_ribo_db              // channel: path(sortmerna_fasta_list)
+    ch_sortmerna_index      // channel: path(sortmerna/index/)
+    ch_bowtie2_rrna_index   // channel: path(bowtie2/index/) for rRNA removal
+    ch_splicesites          // channel: path(genome.splicesites.txt)
 
     main:
 
@@ -194,7 +196,7 @@ workflow RNASEQ {
         ch_gtf,                                     // ch_gtf
         ch_salmon_index,                            // ch_salmon_index
         ch_sortmerna_index,                         // ch_sortmerna_index
-        ch_bowtie2_index,                           // ch_bowtie2_index
+        ch_bowtie2_rrna_index,                      // ch_bowtie2_index (for rRNA removal)
         ch_bbsplit_index,                           // ch_bbsplit_index
         ch_ribo_db,                                 // ch_rrna_fastas
         params.skip_bbsplit || !params.fasta,       // skip_bbsplit
@@ -324,6 +326,67 @@ workflow RNASEQ {
         }
 
     } else if (params.aligner == 'star_salmon') {
+
+        //
+        // SUBWORKFLOW: Count reads from BAM alignments using Salmon
+        //
+        QUANTIFY_STAR_SALMON (
+            ch_samplesheet.map { item -> [ [:], item ] },
+            ch_transcriptome_bam,
+            ch_dummy_file,
+            ch_transcript_fasta,
+            ch_gtf,
+            params.gtf_group_features,
+            params.gtf_extra_attributes,
+            'salmon',
+            true,
+            params.salmon_quant_libtype ?: '',
+            params.kallisto_quant_fraglen,
+            params.kallisto_quant_fraglen_sd
+        )
+        ch_versions = ch_versions.mix(QUANTIFY_STAR_SALMON.out.versions)
+
+        if (!params.skip_qc & !params.skip_deseq2_qc) {
+            DESEQ2_QC_STAR_SALMON (
+                QUANTIFY_STAR_SALMON.out.counts_gene_length_scaled.map { tuple -> tuple[1] },
+                ch_pca_header_multiqc,
+                ch_clustering_header_multiqc
+            )
+            ch_multiqc_files = ch_multiqc_files.mix(DESEQ2_QC_STAR_SALMON.out.pca_multiqc.collect())
+            ch_multiqc_files = ch_multiqc_files.mix(DESEQ2_QC_STAR_SALMON.out.dists_multiqc.collect())
+            ch_versions = ch_versions.mix(DESEQ2_QC_STAR_SALMON.out.versions)
+        }
+    }
+
+    //
+    // SUBWORKFLOW: Alignment with Bowtie2 and quantification with Salmon
+    //
+    ch_bowtie2_log = channel.empty()
+    if (!params.skip_alignment && params.aligner == 'bowtie2_salmon') {
+
+        ALIGN_BOWTIE2 (
+            ch_strand_inferred_filtered_fastq,
+            ch_bowtie2_index,
+            ch_fasta.map { item -> [ [:], item ] }
+        )
+
+        // For Bowtie2+Salmon, the BAM is aligned to transcriptome so it's the "transcriptome_bam"
+        ch_genome_bam                    = ch_genome_bam.mix(ALIGN_BOWTIE2.out.bam)
+        ch_genome_bam_index              = ch_genome_bam_index.mix(params.bam_csi_index ? ALIGN_BOWTIE2.out.csi : ALIGN_BOWTIE2.out.bai)
+        ch_transcriptome_bam             = ch_transcriptome_bam.mix(ALIGN_BOWTIE2.out.bam)
+        ch_percent_mapped                = ch_percent_mapped.mix(ALIGN_BOWTIE2.out.percent_mapped)
+        ch_unprocessed_bams              = ch_genome_bam.map { meta, bam -> [ meta, bam, '' ] }
+        ch_bowtie2_log                   = ALIGN_BOWTIE2.out.log_final
+        ch_multiqc_files                 = ch_multiqc_files.mix(ch_bowtie2_log.collect{ tuple -> tuple[1] })
+
+        ch_versions = ch_versions.mix(ALIGN_BOWTIE2.out.versions)
+
+        if (params.skip_markduplicates) {
+            ch_multiqc_files = ch_multiqc_files
+                .mix(ALIGN_BOWTIE2.out.stats.collect{ tuple -> tuple[1] })
+                .mix(ALIGN_BOWTIE2.out.flagstat.collect{ tuple -> tuple[1] })
+                .mix(ALIGN_BOWTIE2.out.idxstats.collect{ tuple -> tuple[1] })
+        }
 
         //
         // SUBWORKFLOW: Count reads from BAM alignments using Salmon
